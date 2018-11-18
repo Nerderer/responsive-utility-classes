@@ -1,0 +1,40 @@
+// Change to any preferred separator. Some characters must be escaped with a backslash.
+// Some text editors can have difficulties providing autocomplete/suggestions for some escaped characters, but they should still work as intended.
+// Good separators could be something like:
+// \@
+// \:
+// \!
+// '-'
+// '_'
+$breakpoint-class-separator: \:;
+
+// This will change the order of the query name and the utility class name in the generated class name.
+// The separator will always be in the middle.
+// false = hide:md-only
+// true = md-only:hide
+$invert-query-class-order: false;
+
+// Preset breakpoints. Copied from Zurb Foundation. Change these if you prefer other breakpoints.
+$breakpoint-small: 0px;
+$breakpoint-medium: 640px;
+$breakpoint-large: 1024px;
+$breakpoint-xlarge: 1200px;
+$breakpoint-xxlarge: 1440px;
+
+// Add, rename or remove media queries here. You should delete any queries that you don't support, to save some file size.
+$media-queries: (
+		sm-only: mq-between($breakpoint-small, $breakpoint-medium),
+		md: mq-from($breakpoint-medium),
+		md-only: mq-between($breakpoint-medium, $breakpoint-large),
+		md-down: mq-below($breakpoint-large),
+		lg: mq-from($breakpoint-large),
+		lg-only: mq-between($breakpoint-large, $breakpoint-xlarge),
+		lg-down: mq-below($breakpoint-xlarge),
+		xl: mq-from($breakpoint-xlarge),
+		xl-only: mq-between($breakpoint-xlarge, $breakpoint-xxlarge),
+		xl-down: mq-below($breakpoint-xxlarge),
+		xxl: mq-from($breakpoint-xxlarge),
+
+		// You can add any custom media query, like this:
+		//leet: 'screen and (min-width: 1337px)'
+);

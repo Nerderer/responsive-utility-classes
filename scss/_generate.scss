@@ -1,0 +1,32 @@
+// Loop and create generic utility classes that are not responsive. This could be removed it you don't want to use them.
+@each $class, $rule in $utility-classes {
+	$declaration: nth($rule, 1);
+	$prop: nth($declaration, 1);
+	$value: nth($declaration, 2);
+
+	.#{$class} {
+		#{$prop}: $value;
+	}
+}
+
+// Loop and create responsive utility classes. This is where the magic happens.
+@each $query-class, $query in $media-queries {
+	@media #{$query} {
+		@each $class, $rule in $utility-classes {
+			$declaration: nth($rule, 1);
+			$prop: nth($declaration, 1);
+			$value: nth($declaration, 2);
+
+			@if $invert-query-class-order {
+				.#{$query-class}#{$breakpoint-class-separator}#{$class} {
+					#{$prop}: $value;
+				}
+			} @else {
+				.#{$class}#{$breakpoint-class-separator}#{$query-class} {
+					#{$prop}: $value;
+				}
+			}
+
+		}
+	}
+}

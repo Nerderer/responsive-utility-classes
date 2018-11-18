@@ -1,0 +1,8 @@
+// Add utility classes here
+$utility-classes: (
+		hide: (display: none),
+		margin-bottom-none: (margin-bottom: 0),
+		margin-bottom-tiny: (margin-bottom: 5px),
+		margin-bottom-small: (margin-bottom: 10px),
+		margin-bottom-default: (margin-bottom: 20px),
+);
