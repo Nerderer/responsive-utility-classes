@@ -14,6 +14,13 @@ $breakpoint-class-separator: \:;
 // true = md-only:hide
 $invert-query-class-order: false;
 
+// Prefix all generated classes with this. Could be used as some kind of namespace.
+// Default is no prefix, but some prefix examples are:
+// 'is-'
+// 'mod-'
+// 'u_'
+$class-prefix: '';
+
 // Preset breakpoints. Copied from Zurb Foundation. Change these if you prefer other breakpoints.
 $breakpoint-small: 0px;
 $breakpoint-medium: 640px;
@@ -21,20 +28,20 @@ $breakpoint-large: 1024px;
 $breakpoint-xlarge: 1200px;
 $breakpoint-xxlarge: 1440px;
 
-// Add, rename or remove media queries here. You should delete any queries that you don't support, to save some file size.
+// Add, change, rename or remove media queries here. You should delete any queries that you don't support, to save some file size.
 $media-queries: (
-		sm-only: mq-between($breakpoint-small, $breakpoint-medium),
-		md: mq-from($breakpoint-medium),
-		md-only: mq-between($breakpoint-medium, $breakpoint-large),
-		md-down: mq-below($breakpoint-large),
-		lg: mq-from($breakpoint-large),
-		lg-only: mq-between($breakpoint-large, $breakpoint-xlarge),
-		lg-down: mq-below($breakpoint-xlarge),
-		xl: mq-from($breakpoint-xlarge),
-		xl-only: mq-between($breakpoint-xlarge, $breakpoint-xxlarge),
-		xl-down: mq-below($breakpoint-xxlarge),
-		xxl: mq-from($breakpoint-xxlarge),
+	sm-only: mq-between($breakpoint-small, $breakpoint-medium),
+	md: mq-from($breakpoint-medium),
+	md-only: mq-between($breakpoint-medium, $breakpoint-large),
+	md-down: mq-below($breakpoint-large),
+	lg: mq-from($breakpoint-large),
+	lg-only: mq-between($breakpoint-large, $breakpoint-xlarge),
+	lg-down: mq-below($breakpoint-xlarge),
+	xl: mq-from($breakpoint-xlarge),
+	xl-only: mq-between($breakpoint-xlarge, $breakpoint-xxlarge),
+	xl-down: mq-below($breakpoint-xxlarge),
+	xxl: mq-from($breakpoint-xxlarge),
 
-		// You can add any custom media query, like this:
-		//leet: 'screen and (min-width: 1337px)'
+	// You can add any custom media query, like this:
+	// "leet: 'screen and (min-width: 1337px)'"
 );

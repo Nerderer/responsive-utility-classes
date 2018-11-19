@@ -1,0 +1,79 @@
+// Just some example variables. These should be your own, and placed in another file.
+$margin-tiny: 5px;
+$margin-small: 10px;
+$margin-default: 20px;
+$padding-tiny: 5px;
+$padding-small: 10px;
+$padding-default: 20px;
+
+// Add utility classes here
+$utility-classes: (
+
+	// Display
+	hidden: (display: none),
+	inline: (display: inline),
+	block: (display: block),
+	inline-block: (display: inline-block),
+
+	// Floats
+	float-left: (float: left),
+	float-right: (float: right),
+
+	// Margin
+	mt-none: (margin-top: 0),
+	mt-tiny: (margin-top: $margin-tiny),
+	mt-small: (margin-top: $margin-small),
+	mt-default: (margin-top: $margin-default),
+
+	mr-none: (margin-right: 0),
+	mr-tiny: (margin-right: $margin-tiny),
+	mr-small: (margin-right: $margin-small),
+	mr-default: (margin-right: $margin-default),
+
+	mb-none: (margin-bottom: 0),
+	mb-tiny: (margin-bottom: $margin-tiny),
+	mb-small: (margin-bottom: $margin-small),
+	mb-default: (margin-bottom: $margin-default),
+
+	ml-none: (margin-left: 0),
+	ml-tiny: (margin-left: $margin-tiny),
+	ml-small: (margin-left: $margin-small),
+	ml-default: (margin-left: $margin-default),
+
+	m-auto: (margin: 0 auto),
+
+	// Padding
+	pt-none: (padding-top: 0),
+	pt-tiny: (padding-top: $padding-tiny),
+	pt-small: (padding-top: $padding-small),
+	pt-default: (padding-top: $padding-default),
+
+	pr-none: (padding-right: 0),
+	pr-tiny: (padding-right: $padding-tiny),
+	pr-small: (padding-right: $padding-small),
+	pr-default: (padding-right: $padding-default),
+
+	pb-none: (padding-bottom: 0),
+	pb-tiny: (padding-bottom: $padding-tiny),
+	pb-small: (padding-bottom: $padding-small),
+	pb-default: (padding-bottom: $padding-default),
+
+	pl-none: (padding-left: 0),
+	pl-tiny: (padding-left: $padding-tiny),
+	pl-small: (padding-left: $padding-small),
+	pl-default: (padding-left: $padding-default),
+
+	p-all-none: (padding: 0),
+	p-all-tiny: (padding: $padding-tiny),
+	p-all-small: (padding: $padding-small),
+	p-all-default: (padding: $padding-default),
+
+	// Text
+	text-left: (text-align: left),
+	text-right: (text-align: right),
+	text-center: (text-align: center),
+	whitespace-no-wrap: (white-space: nowrap),
+
+	// Misc
+	fill-width: (width: 100%),
+);

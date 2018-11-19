@@ -4,8 +4,8 @@
 	$prop: nth($declaration, 1);
 	$value: nth($declaration, 2);
 
-	.#{$class} {
-		#{$prop}: $value;
+	.#{$class-prefix}#{$class} {
+		#{$prop}: $value !important;
 	}
 }
 
@@ -18,15 +18,14 @@
 			$value: nth($declaration, 2);
 
 			@if $invert-query-class-order {
-				.#{$query-class}#{$breakpoint-class-separator}#{$class} {
-					#{$prop}: $value;
+				.#{$class-prefix}#{$query-class}#{$breakpoint-class-separator}#{$class} {
+					#{$prop}: $value !important;
 				}
 			} @else {
-				.#{$class}#{$breakpoint-class-separator}#{$query-class} {
-					#{$prop}: $value;
+				.#{$class-prefix}#{$class}#{$breakpoint-class-separator}#{$query-class} {
+					#{$prop}: $value !important;
 				}
 			}
-
 		}
 	}
 }

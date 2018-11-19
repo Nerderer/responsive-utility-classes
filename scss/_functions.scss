@@ -1,11 +1,11 @@
-@function mq-from($breakpoint){
-	@return 'screen and (min-width: #{$breakpoint})'
+@function mq-from($breakpoint) {
+	@return 'screen and (min-width: #{$breakpoint})';
 }
 
-@function mq-between($breakpoint-low, $breakpoint-high){
-	@return 'screen and (min-width: #{$breakpoint-low}) and (max-width: #{$breakpoint-high - 1})'
+@function mq-between($breakpoint-low, $breakpoint-high) {
+	@return 'screen and (min-width: #{$breakpoint-low}) and (max-width: #{$breakpoint-high - 1})';
 }
 
-@function mq-below($breakpoint){
-	@return 'screen and (max-width: #{$breakpoint - 1})'
+@function mq-below($breakpoint) {
+	@return 'screen and (max-width: #{$breakpoint - 1})';
 }
