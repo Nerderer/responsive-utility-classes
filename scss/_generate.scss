@@ -1,11 +1,18 @@
-// Loop and create generic utility classes that are not responsive. This could be removed it you don't want to use them.
+$important-modifier: null;
+
+@if $auto-append-important {
+	$important-modifier: !important;
+}
+
+// Loop and create base classes.
 @each $class, $rule in $utility-classes {
 	$declaration: nth($rule, 1);
 	$prop: nth($declaration, 1);
 	$value: nth($declaration, 2);
 
+
 	.#{$class-prefix}#{$class} {
-		#{$prop}: $value !important;
+		#{$prop}: $value $important-modifier;
 	}
 }
 
@@ -19,11 +26,11 @@
 
 			@if $invert-query-class-order {
 				.#{$class-prefix}#{$query-class}#{$breakpoint-class-separator}#{$class} {
-					#{$prop}: $value !important;
+					#{$prop}: $value $important-modifier;
 				}
 			} @else {
 				.#{$class-prefix}#{$class}#{$breakpoint-class-separator}#{$query-class} {
-					#{$prop}: $value !important;
+					#{$prop}: $value $important-modifier;
 				}
 			}
 		}
