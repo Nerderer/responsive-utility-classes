@@ -76,4 +76,8 @@ $utility-classes: (
 
 	// Misc
 	fill-width: (width: 100%),
+	list-reset: (
+		list-style: none,
+		padding: 0
+	)
 );

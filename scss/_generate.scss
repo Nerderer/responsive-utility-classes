@@ -5,32 +5,33 @@ $important-modifier: null;
 }
 
 // Loop and create base classes.
-@each $class, $rule in $utility-classes {
-	$declaration: nth($rule, 1);
-	$prop: nth($declaration, 1);
-	$value: nth($declaration, 2);
+@each $class, $declarations in $utility-classes {
+	@each $declaration in $declarations {
+		$prop: nth($declaration, 1);
+		$value: nth($declaration, 2);
 
-
-	.#{$class-prefix}#{$class} {
-		#{$prop}: $value $important-modifier;
+		.#{$class-prefix}#{$class} {
+			#{$prop}: $value $important-modifier;
+		}
 	}
 }
 
 // Loop and create responsive utility classes. This is where the magic happens.
 @each $query-class, $query in $media-queries {
 	@media #{$query} {
-		@each $class, $rule in $utility-classes {
-			$declaration: nth($rule, 1);
-			$prop: nth($declaration, 1);
-			$value: nth($declaration, 2);
+		@each $class, $declarations in $utility-classes {
+			@each $declaration in $declarations {
+				$prop: nth($declaration, 1);
+				$value: nth($declaration, 2);
 
-			@if $invert-query-class-order {
-				.#{$class-prefix}#{$query-class}#{$breakpoint-class-separator}#{$class} {
-					#{$prop}: $value $important-modifier;
-				}
-			} @else {
-				.#{$class-prefix}#{$class}#{$breakpoint-class-separator}#{$query-class} {
-					#{$prop}: $value $important-modifier;
+				@if $invert-query-class-order {
+					.#{$class-prefix}#{$query-class}#{$breakpoint-class-separator}#{$class} {
+						#{$prop}: $value $important-modifier;
+					}
+				} @else {
+					.#{$class-prefix}#{$class}#{$breakpoint-class-separator}#{$query-class} {
+						#{$prop}: $value $important-modifier;
+					}
 				}
 			}
 		}
