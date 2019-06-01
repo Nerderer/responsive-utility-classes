@@ -1,16 +1,46 @@
 // Just some example variables. These should be your own, and placed in another file.
-$margin-tiny: 5px;
-$margin-small: 10px;
-$margin-default: 20px;
-$padding-tiny: 5px;
-$padding-small: 10px;
-$padding-default: 20px;
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// You can add the "include" prop if you just want to add the class to specific breakpoints.
+// If it's empty, "include: ()" it will not be added to any of the breakpoint classes.
+// If you set it to "include: (all)", then it will be added to all the breakpoint classes.
+// Not having include at all is the same as the above - all breakpoint classes will be generated.
+// Base classes (no breakpoint modifier added) will *always* be rendered.
+//
+// Example 1 - This will add a base class (".hidden"), ".hidden@md-down" and ".hidden@lg":
+// hidden: (
+// 		display: none,
+//		include: (md-down, lg)
+// )
+//
+// Example 2 - This will add a base class only
+// hidden: (
+// 		display: none,
+//		include: ()
+// )
+//
+// Example 3 - This will (implicitly) add all the classes
+// hidden: (
+// 		display: none,
+// )
+//
+// Example 4 - This will (explicitly) add all the classes
+// hidden: (
+// 		display: none,
+// 		include: (all)
+// )
+
+
 
 // Add utility classes here
 $utility-classes: (
 
 	// Display
-	hidden: (display: none),
+	hidden: (display: none !important),
 	inline: (display: inline),
 	block: (display: block),
 	inline-block: (display: inline-block),
@@ -19,54 +49,8 @@ $utility-classes: (
 	float-left: (float: left),
 	float-right: (float: right),
 
-	// Margin
-	mt-none: (margin-top: 0),
-	mt-tiny: (margin-top: $margin-tiny),
-	mt-small: (margin-top: $margin-small),
-	mt-default: (margin-top: $margin-default),
-
-	mr-none: (margin-right: 0),
-	mr-tiny: (margin-right: $margin-tiny),
-	mr-small: (margin-right: $margin-small),
-	mr-default: (margin-right: $margin-default),
-
-	mb-none: (margin-bottom: 0),
-	mb-tiny: (margin-bottom: $margin-tiny),
-	mb-small: (margin-bottom: $margin-small),
-	mb-default: (margin-bottom: $margin-default),
-
-	ml-none: (margin-left: 0),
-	ml-tiny: (margin-left: $margin-tiny),
-	ml-small: (margin-left: $margin-small),
-	ml-default: (margin-left: $margin-default),
-
-	m-auto: (margin: 0 auto),
-
-	// Padding
-	pt-none: (padding-top: 0),
-	pt-tiny: (padding-top: $padding-tiny),
-	pt-small: (padding-top: $padding-small),
-	pt-default: (padding-top: $padding-default),
-
-	pr-none: (padding-right: 0),
-	pr-tiny: (padding-right: $padding-tiny),
-	pr-small: (padding-right: $padding-small),
-	pr-default: (padding-right: $padding-default),
-
-	pb-none: (padding-bottom: 0),
-	pb-tiny: (padding-bottom: $padding-tiny),
-	pb-small: (padding-bottom: $padding-small),
-	pb-default: (padding-bottom: $padding-default),
-
-	pl-none: (padding-left: 0),
-	pl-tiny: (padding-left: $padding-tiny),
-	pl-small: (padding-left: $padding-small),
-	pl-default: (padding-left: $padding-default),
-
-	p-all-none: (padding: 0),
-	p-all-tiny: (padding: $padding-tiny),
-	p-all-small: (padding: $padding-small),
-	p-all-default: (padding: $padding-default),
+	// Paddings and margins - besides those found in _margins.scss and _paddings.scss
+	m\:auto: (margin: 0 auto),
 
 	// Text
 	text-left: (text-align: left),
@@ -74,10 +58,19 @@ $utility-classes: (
 	text-center: (text-align: center),
 	whitespace-no-wrap: (white-space: nowrap),
 
-	// Misc
-	fill-width: (width: 100%),
+	// Resets
 	list-reset: (
 		list-style: none,
-		padding: 0
-	)
+		padding: 0,
+		include: () // An empty "include" will exclude all breakpoint classes, generating only the base class
+	),
+
+	// Misc
+	fill-width: (width: 100%),
+
 );
+
+// Append padding and margin classes. These are optional.
+// If you just have a few padding and margin classes you can instead add them in $utility-classes above.
+@import 'paddings';
+@import 'margins';

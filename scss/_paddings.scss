@@ -1,0 +1,60 @@
+// Will generate classes like ".pt:md" - short for "padding top - medium".
+
+// Change this if you want to use a different separator in ".pt:md".
+// Another common separator: '-'. This will render '.pt-md'
+$separator: \:;
+
+// Change these to anything you prefer. They could be symbolic numbers, like "1: 4px" or even exact numbers, like "4: 4px".
+$paddings: (
+	0: 0,
+	xs: $spacing-xs,
+	sm: $spacing-sm,
+	md: $spacing-md,
+	lg: $spacing-lg,
+	xl: $spacing-xl,
+);
+
+$padding-classes: ();
+
+// Render the utility classes. Go ahead - change these if you want to.
+@each $spacing in $paddings {
+	$key: nth($spacing, 1);
+	$value: nth($spacing, 2);
+
+	$padding-classes: (
+		p#{$separator}#{$key}: (
+			padding-top: #{$value},
+			padding-right: #{$value},
+			padding-bottom: #{$value},
+			padding-left: #{$value}
+		),
+
+		pt#{$separator}#{$key}: (
+			padding-top: #{$value}
+		),
+
+		pr#{$separator}#{$key}: (
+			padding-right: #{$value}
+		),
+
+		pb#{$separator}#{$key}: (
+			padding-bottom: #{$value}
+		),
+
+		pl#{$separator}#{$key}: (
+			padding-left: #{$value}
+		),
+
+		px#{$separator}#{$key}: (
+			padding-right: #{$value},
+			padding-left: #{$value},
+		),
+
+		py#{$separator}#{$key}: (
+			padding-top: #{$value},
+			padding-bottom: #{$value},
+		),
+	);
+
+	$utility-classes: map-merge($utility-classes, $padding-classes);
+}

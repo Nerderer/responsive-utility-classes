@@ -4,35 +4,59 @@ $important-modifier: null;
 	$important-modifier: !important;
 }
 
-// Loop and create base classes.
-@each $class, $declarations in $utility-classes {
-	@each $declaration in $declarations {
-		$prop: nth($declaration, 1);
-		$value: nth($declaration, 2);
+@function contains($list, $var) {
+	@return (null != index($list, $var));
+}
 
-		.#{$class-prefix}#{$class} {
-			#{$prop}: $value $important-modifier;
+@mixin render-utility-class($class-name, $declarations) {
+	#{$class-name} {
+		@each $declaration in $declarations {
+			$prop: nth($declaration, 1);
+			$value: nth($declaration, 2);
+
+			// Don't render 'include'!
+			@if $prop != 'include' {
+				#{$prop}: $value $important-modifier;
+			}
 		}
 	}
 }
 
+// Loop and create base classes.
+@each $class-name, $declarations in $utility-classes {
+	$generated-class-name: '.' + #{$class-prefix}#{$class-name};
+	@include render-utility-class($generated-class-name, $declarations);
+}
+
 // Loop and create responsive utility classes. This is where the magic happens.
-@each $query-class, $query in $media-queries {
+@each $bp-name, $query in $breakpoints {
 	@media #{$query} {
-		@each $class, $declarations in $utility-classes {
+		@each $class-name, $declarations in $utility-classes {
+
+			// Generate the full class name
+			$generated-class-name: '.' + #{$class-prefix}#{$class-name}#{$breakpoint-class-separator}#{$bp-name};
+			@if $invert-breakpoint-name-order {
+				$generated-class-name: '.' + #{$class-prefix}#{$bp-name}#{$breakpoint-class-separator}#{$class-name};
+			}
+
+			// Check if this class should be rendered for this breakpoint
+			$is-included: true;
 			@each $declaration in $declarations {
 				$prop: nth($declaration, 1);
 				$value: nth($declaration, 2);
 
-				@if $invert-query-class-order {
-					.#{$class-prefix}#{$query-class}#{$breakpoint-class-separator}#{$class} {
-						#{$prop}: $value $important-modifier;
-					}
-				} @else {
-					.#{$class-prefix}#{$class}#{$breakpoint-class-separator}#{$query-class} {
-						#{$prop}: $value $important-modifier;
+				@if $prop == 'include' {
+					$is-included: false;
+
+					@if (contains(map-get($declarations, 'include'), $bp-name) or contains(map-get($declarations, 'include'), all)) {
+						@debug 'Included "#{$bp-name}" on class ".#{$class-name}"';
+						$is-included: true;
 					}
 				}
+			}
+
+			@if $is-included {
+				@include render-utility-class($generated-class-name, $declarations);
 			}
 		}
 	}

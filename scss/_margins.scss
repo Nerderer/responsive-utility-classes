@@ -1,0 +1,65 @@
+// Will generate classes like ".mt:md" - short for "margin top - medium".
+
+// Change this if you want to use a different separator in ".mt:md".
+// Another common separator: '-'. This will render '.mt-md'
+$separator: \:;
+
+// Change these to anything you prefer. They could be symbolic numbers, like "1: 4px" or even exact numbers, like "4: 4px".
+$margins: (
+	0: 0,
+	xs: $spacing-xs,
+	sm: $spacing-sm,
+	md: $spacing-md,
+	lg: $spacing-lg,
+	xl: $spacing-xl,
+	-xs: -$spacing-xs,
+	-sm: -$spacing-sm,
+	-md: -$spacing-md,
+	-lg: -$spacing-lg,
+	-xl: -$spacing-xl,
+);
+
+$margin-classes: ();
+
+// Render the utility classes. Go ahead - change these if you want to.
+@each $spacing in $margins {
+	$key: nth($spacing, 1);
+	$value: nth($spacing, 2);
+
+	$margin-classes: (
+		m#{$separator}#{$key}: (
+			margin-top: #{$value},
+			margin-right: #{$value},
+			margin-bottom: #{$value},
+			margin-left: #{$value}
+		),
+
+		mt#{$separator}#{$key}: (
+			margin-top: #{$value}
+		),
+
+		mr#{$separator}#{$key}: (
+			margin-right: #{$value}
+		),
+
+		mb#{$separator}#{$key}: (
+			margin-bottom: #{$value}
+		),
+
+		ml#{$separator}#{$key}: (
+			margin-left: #{$value}
+		),
+
+		mx#{$separator}#{$key}: (
+			margin-right: #{$value},
+			margin-left: #{$value},
+		),
+
+		my#{$separator}#{$key}: (
+			margin-top: #{$value},
+			margin-bottom: #{$value},
+		),
+	);
+
+	$utility-classes: map-merge($utility-classes, $margin-classes);
+}
