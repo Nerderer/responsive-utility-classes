@@ -23,7 +23,7 @@ $class-prefix: '';
 
 // Automatically add !important on all generated classes.
 // By default this is true, but if you set it to false you can still manually add !important for each rule in your class definitions.
-$auto-append-important: false;
+$auto-append-important: true;
 
 // Preset breakpoints. Copied from Zurb Foundation. Change these if you prefer other breakpoints.
 $breakpoint-small: 0px;
